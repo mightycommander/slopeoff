@@ -55,4 +55,4 @@ def get_recommendations(preferences):
     X = np.array(europe[['Mountain restaurants, ski huts, gastronomy','Friendliness of staff','Advanced skiers, freeriders','Environmentally friendly ski operation']].append(pd.Series(data=[5.0,5,5,5], index=['Mountain restaurants, ski huts, gastronomy','Friendliness of staff','Advanced skiers, freeriders','Environmentally friendly ski operation']), ignore_index=True))
     nbrs = NearestNeighbors(n_neighbors=374, algorithm='kd_tree').fit(X)
     distances, indices = nbrs.kneighbors(X)
-    print
+    
