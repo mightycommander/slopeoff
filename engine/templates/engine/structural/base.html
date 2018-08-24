@@ -1,0 +1,41 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}MVT App{% endblock %}
+
+{% block styles %}
+    {{super()}}
+    <!-- Bokeh plotting library css imports -->
+    {% if bokeh_script %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bokeh/0.13.0/bokeh.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bokeh/0.13.0/bokeh-tables.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bokeh/0.13.0/bokeh-widgets.css">
+    {% endif %}
+    <!-- Custom app styling -->
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body_attribs %} class="bg-light" {% endblock %}
+
+{% block content %}
+    {% include 'core/structural/nav.html' %}
+    {% include 'core/structural/alerts.html' %}
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- Sketch JS -->
+    <script src="https://rawgit.com/soulwire/sketch.js/v1.0/js/sketch.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index_sketch.js') }}"></script>
+    <!-- Bokeh JS -->
+    {% if bokeh_script %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/0.13.0/bokeh.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/0.13.0/bokeh-widgets.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/0.13.0/bokeh-tables.js"></script>
+        {{ bokeh_script|safe }}
+    {% endif %}
+{% endblock %}
