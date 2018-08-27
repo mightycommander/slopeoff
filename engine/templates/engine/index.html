@@ -1,5 +1,8 @@
-{% load bootstrap3 %}
-
+{% extends "engine/structural/base.html" %}
+{% block content %}
+  {{ block.super }}
+{% load bootstrap4 %}
+{% load static %}
 {# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
@@ -8,18 +11,40 @@
 {% bootstrap_messages %}
 
 {# Display a form #}
-<form action="/your-name/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
 
-{% if allResorts %}
-    <ul>
-    {% for resort in allResorts %}
-        <li><a href="{% url 'engine:detail' resort.ResortName %}">{{ resort.ResortName }}</a></li>
+  <form>
+      {% csrf_token %}
+      {% bootstrap_form form %}
+
+      <input type="submit" value="Submit">
+  </form>
+
+  {% if allResorts %}
+  <div class="row">
+      {% for resort in allResorts %}
+      <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{% static "images/skiResort.png" %}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ resort.ResortName }}</h5>
+          <p class="card-text">{{resort.Country}}</p>
+          <p class="card-text">{{resort.ResortSize}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <div class="card-body">
+          <a href="{% url 'engine:detail' resort.ResortName %}" class="card-link">More Info</a>
+        </div>
+      </div>
+    </div>
+
     {% endfor %}
-    </ul>
-{% else %}
-    <p>No resorts are available.</p>
-{% endif %}
+  </div>
+      </ul>
+  {% else %}
+      <p>No resorts are available.</p>
+  {% endif %}
+{% endblock %}

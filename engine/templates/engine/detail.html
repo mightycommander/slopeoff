@@ -1,3 +1,15 @@
+{% extends "engine/structural/base.html" %}
+
+{% load bootstrap4 %}
+{% load static %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% block content %}
 <h1>{{ resort.ResortName }}</h1>
 
 
@@ -8,3 +20,4 @@
     <li>Currency: {{resort.Currency}}</li>
 
 </ul>
+{% endblock %}

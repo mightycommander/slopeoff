@@ -1,0 +1,49 @@
+{% extends "engine/structural/base.html" %}
+{% load static %}
+
+{% block nav %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-2">
+
+      <a class="navbar-brand text-secondary ml-5" href="/engine">
+          <img src="{% static "images/logo.png" %}" alt="SlopeOff logo" style="width: 175px;">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+            <ul class="navbar-nav mr-5">
+
+
+                  <li class="nav-item text-center border-light mx-2">
+                    <a class="nav-link" href="#">
+                        <button type="button" class="btn btn-outline-secondary rounded-0" style="min-width: 100px;">Home</button>
+                    </a>
+                  </li>
+                  <li class="nav-item text-center border-light mx-2">
+                    <a class="nav-link" href="#">
+                        <button type="button" class="btn btn-outline-secondary rounded-0" style="min-width: 100px;">New</button>
+                    </a>
+                  </li>
+                  <li class="nav-item text-center border-light mx-2">
+                    <a class="nav-link" href="#">
+                        <button type="button" class="btn btn-outline-secondary rounded-0" style="min-width: 100px;">Other Link</button>
+                    </a>
+                  </li>
+                  <li class="nav-item text-center border-light mx-2">
+                    <a class="nav-link" href="#">
+                        <button type="button" class="btn btn-outline-secondary rounded-0" style="min-width: 100px;">New Link</button>
+                    </a>
+                  </li>
+
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+{% endblock %}

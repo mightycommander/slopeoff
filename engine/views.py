@@ -2,10 +2,27 @@ from django.template import loader
 from django.http import HttpResponse
 from .models import ResortInfo, get_recommendations
 from django.shortcuts import render, get_object_or_404
-from .forms import ContactForm
+from .forms import FilesForm
 
 # Create your views here.
-
+nav_links = [
+    {
+        'link_text': 'HOME',
+        'destination': 'core.index'
+    },
+    {
+        'link_text': 'TEST EXAMPLE',
+        'destination': 'core.example'
+    },
+    {
+        'link_text': 'ANOTHER EXAMPLE',
+        'destination': 'core.another_example'
+    },
+    {
+        'link_text': 'MVT GUIDE',
+        'destination': 'core.guide'
+    }
+]
 
 def index(request):
     allResorts = ResortInfo.objects.order_by('id')[:20]
@@ -13,27 +30,12 @@ def index(request):
         'allResorts': allResorts,
     }
     page_title = 'An example form and graph'
+    form = FilesForm()
 
-    form = ContactForm(request.form)
 
-    if request.method == 'GET':
-        return render(request, 'engine/index.html', context)
+    return render(request, 'engine/index.html', {'form': form, 'allResorts': allResorts})
 
-    if request.method == 'POST':
-        flash("You just submitted a form. Yay!")
-        return render(request, 'engine/index.html', context)
-        '''
-        plot = create_dummy_plot(
-            project_id=request.form['project_id'],
-            plot_type=request.form['plot_type'],
-            color=request.form['plot_color']
-        )
-        script, div = components(plot)
 
-        return render_template(
-            'core/example.html', title=page_title, nav_links=nav_links, form=form, bokeh_script=script, div=div
-        )
-    '''
 
 
 

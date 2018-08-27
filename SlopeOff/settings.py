@@ -10,15 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-'''psql superuse
-matthewmardle
-mmardle@gmail.com
-D3FCOn33'''
 
 import os
+import sys
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+# Include BOOTSTRAP4_FOLDER in path
+BOOTSTRAP4_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "..", "bootstrap4"))
+if BOOTSTRAP4_FOLDER not in sys.path:
+    sys.path.insert(0, BOOTSTRAP4_FOLDER)
 
 
 # Quick-start development settings - unsuitable for production
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap3',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,64 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Default settings
+BOOTSTRAP3 = {
+
+    # The URL to the jQuery JavaScript file
+    'jquery_url': '//code.jquery.com/jquery.min.js',
+
+    # The Bootstrap base URL
+    'base_url': '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/',
+
+    # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
+    'css_url': None,
+
+    # The complete URL to the Bootstrap CSS file (None means no theme)
+    'theme_url': None,
+
+    # The complete URL to the Bootstrap JavaScript file (None means derive it from base_url)
+    'javascript_url': None,
+
+    # Put JavaScript in the HEAD section of the HTML document (only relevant if you use bootstrap3.html)
+    'javascript_in_head': False,
+
+    # Include jQuery with Bootstrap JavaScript (affects django-bootstrap3 template tags)
+    'include_jquery': False,
+
+    # Label class to use in horizontal forms
+    'horizontal_label_class': 'col-md-3',
+
+    # Field class to use in horizontal forms
+    'horizontal_field_class': 'col-md-9',
+
+    # Set HTML required attribute on required fields, for Django <= 1.8 only
+    'set_required': True,
+
+    # Set HTML disabled attribute on disabled fields, for Django <= 1.8 only
+    'set_disabled': False,
+
+    # Set placeholder attributes to label if no placeholder is provided.
+    # This also considers the 'label' option of {% bootstrap_field %} tags.
+    'set_placeholder': True,
+
+    # Class to indicate required (better to set this in your Django form)
+    'required_css_class': '',
+
+    # Class to indicate error (better to set this in your Django form)
+    'error_css_class': 'has-error',
+
+    # Class to indicate success, meaning the field has valid input (better to set this in your Django form)
+    'success_css_class': 'has-success',
+        # Renderers (only set these if you have studied the source and understand the inner workings)
+    'formset_renderers':{
+        'default': 'bootstrap3.renderers.FormsetRenderer',
+    },
+    'form_renderers': {
+        'default': 'bootstrap3.renderers.FormRenderer',
+    },
+    'field_renderers': {
+        'default': 'bootstrap3.renderers.FieldRenderer',
+        'inline': 'bootstrap3.renderers.InlineFieldRenderer',
+    },
+}

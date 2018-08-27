@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700');
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.oy-h {
+    overflow-y: hidden;
+}
+
+.index_text {
+    position: absolute;
+    width: 52%;
+    margin: 42vh 24% 0 24%;
+}
+.index_text h1 {
+    font-size: 70px;
+}
