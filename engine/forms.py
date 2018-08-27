@@ -31,9 +31,9 @@ class ContactBaseFormSet(BaseFormSet):
 
 class FilesForm(forms.Form):
 
-    Size = forms.IntegerField(widget=NumberInput(attrs={'type':'range', 'step': '1', 'min': '1', 'max': '10'}))
-    Price = forms.IntegerField(widget=NumberInput(attrs={'type':'range', 'step': '1', 'min': '1', 'max': '10'}))
-    Ability = forms.IntegerField(widget=NumberInput(attrs={'type':'range', 'step': '1', 'min': '1', 'max': '10'}))
+    Size = forms.IntegerField(widget=NumberInput(attrs={'type':'range', 'step': '1', 'min': '1', 'max': '5'}))
+    Price = forms.IntegerField(widget=NumberInput(attrs={'type':'range', 'step': '1', 'min': '1', 'max': '5'}))
+    Ability = forms.IntegerField(widget=NumberInput(attrs={'type':'range', 'step': '1', 'min': '1', 'max': '5'}))
 
     '''text1 = forms.CharField()
 

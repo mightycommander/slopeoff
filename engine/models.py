@@ -1,5 +1,7 @@
 from django.db import models
-
+import numpy as np
+from sklearn.neighbors import NearestNeighbors
+import pandas as pd
 # Create your models here.
 
 class ResortInfo(models.Model):
@@ -51,5 +53,18 @@ class ResortInfo(models.Model):
     CatSkiing = models.FloatField(blank=True, null=True)
 
 
-def get_recommendations(preferences):
-    pass
+def get_recommendations(dataset, preferences):
+    df = pd.DataFrame(dataset)
+    df = df.rename(columns=lambda x: x.strip())
+    print(df2.index)
+    dropCols = ['Funicular', 'RopeTow' 'Chairlift', 'B']
+
+    df2 = df[['ResortSize', 'ApresSki', 'Advanced']]
+    df2.dropna(axis=0, inplace=True)
+
+
+    X = np.array(df2[['ResortSize', 'ApresSki', 'Advanced']].append(pd.Series(data=preferences, index=['ResortSize', 'ApresSki', 'Advanced']), ignore_index=True))
+    nbrs = NearestNeighbors(n_neighbors=374, algorithm='kd_tree').fit(X)
+    distances, indices = nbrs.kneighbors(X)
+    print(indices[-1,1:])
+    return indices[-1,1:]
