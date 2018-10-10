@@ -56,15 +56,16 @@ class ResortInfo(models.Model):
 def get_recommendations(dataset, preferences):
     df = pd.DataFrame(dataset)
     df = df.rename(columns=lambda x: x.strip())
-    print(df2.index)
-    dropCols = ['Funicular', 'RopeTow' 'Chairlift', 'B']
 
-    df2 = df[['ResortSize', 'ApresSki', 'Advanced']]
+    numericCols = [col for col in df.columns if isinstance(df[col], int)]
+    dropCols = [col for col in numericCols if df[col].sum() == 0]
+    df2 = df[[col for col in df.columns if col not in dropCols]]
+
+    df2 = df[['ResortName','ResortSize', 'ApresSki', 'Advanced']]
     df2.dropna(axis=0, inplace=True)
-
+    df2.reset_index(drop=True, inplace=True)
 
     X = np.array(df2[['ResortSize', 'ApresSki', 'Advanced']].append(pd.Series(data=preferences, index=['ResortSize', 'ApresSki', 'Advanced']), ignore_index=True))
     nbrs = NearestNeighbors(n_neighbors=374, algorithm='kd_tree').fit(X)
     distances, indices = nbrs.kneighbors(X)
-    print(indices[-1,1:])
-    return indices[-1,1:]
+    return list(df2.ix[indices[-1,1:]]['ResortName'].values)[:10]

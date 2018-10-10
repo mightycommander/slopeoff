@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700');
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.oy-h {
+    overflow-y: hidden;
+}
+.container {
+
+}
+.index_text {
+    position: absolute;
+    width: 52%;
+    margin: 42vh 24% 0 24%;
+}
+.index_text h1 {
+    font-size: 70px;
+}
+
+ a {
+  color: #464646;
+}
+
+li p {
+  padding: .5rem;
+}
+
+body {
+  line-height: 0.8;
+}
+
+li.nav-item {
+  padding: 0;
+}
+.middle-block {
+  text-align: center;
+}
+
+ul.right-block ul {
+  text-align: right;
+  float: right;
+}
+.navbar-right li a {
+  text-align: right;
+}
+  .navbar-right ul li {
+    float: right;
+    text-align: right;
+  }
+    .navbar-right ul li a{
+      float: right;
+      text-align: right;
+    }
+.hero {
+    /* Sizing */
+    width: 100vw;
+
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Text styles */
+    text-align: center;
+
+    /* Background styles */
+    background-image: url(http://hdqwalls.com/wallpapers/nature-snow-mountains-4k-5k-4g.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.rsrt-list {
+  margin-top: 20px;
+}
+.headdiv {
+  position: relative;
+  z-index: 100;
+}
+
+.card {
+  margin: 20px 0 20px;
+}
+.logoMain {
+  background-color:rgba(256, 256, 256, 0.5);
+}
+
+.container-table {
+    display: table;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+.home-navbar {
+  margin: 0!important;
+}
+
+.my-auto {
+  margin-top:40px!important;
+}
+h2 {
+  padding-top: 12px;
+  color: white!important;
+  font-size: 14pt;
+  font-family: 'Poppins', sans-serif;
+
+}

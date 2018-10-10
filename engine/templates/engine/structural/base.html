@@ -1,28 +1,35 @@
 
 {% extends 'engine/structural/bootstrap.html' %}
+{% load leaflet_tags %}
 
-{% load bootstrap4 %}
+
 {% load static %}
 
 {% block styles %}
     {{ block.super }}
     <!-- Bokeh plotting library css imports -->
-    {% if bokeh_script %}
+<!--    {% if bokeh_script %}
+    {% leaflet_js %}
+    {% leaflet_css %}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bokeh/0.13.0/bokeh.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bokeh/0.13.0/bokeh-tables.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bokeh/0.13.0/bokeh-widgets.css">
-    {% endif %}
+    {% endif %}-->
     <!-- Custom app styling -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <link href="{% static 'engine/structural/css/app.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 {% endblock %}
-
+{% load bootstrap4 %}
 {% block bootstrap4_content %}
   <div class="container">
+    <div class="row col-sm-12 home-navbar">
     {% block nav %}
       {% include "engine/structural/nav.html" %}
       {{ block.super }}
     {% endblock %}
-
+  </div>
+  </div>
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
 
         {% block content %}

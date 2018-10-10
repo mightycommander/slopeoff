@@ -6,45 +6,80 @@
 {# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+{% block styles %}
+  {{ block.super }}
+{% endblock %}
 
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 
 {# Display a form #}
+<div class="hero">
 
-  <form method="POST">
-      {% csrf_token %}
-      {% bootstrap_form form %}
+    <div class="container h-100 d-flex justify-content-center">
+        <div class="my-auto logoMain">
+          <img src="{% static "images/slopeoff.png" %}"/>
+        </div>
+    </div>
+</div>
+<div class="hero">
+    <div class="container h-100 d-flex justify-content-center">
+        <h2>Discover your ideal ski resort that's tailored to you in just a few clicks</h2>
+    </div>
+</div>
+<div class="hero">
+    <div class="container h-100 d-flex justify-content-center">
+        <a href="#"><img src="{% static "images/downbutton.png" %}"/></a>
+    </div>
+</div>
+<div class="hero">
 
-      <input type="submit" value="Submit">
-  </form>
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
 
+        <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+
+<div class="rsrt-list container">
   {% if allResorts %}
   <div class="row">
+    <div class="col-sm-12">
       {% for resort in allResorts %}
-      <div class="col-sm-4">
-        <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{% static "images/skiResort.png" %}" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{ resort.ResortName }}</h5>
-          <p class="card-text">{{resort.Country}}</p>
-          <p class="card-text">{{resort.ResortSize}}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-        <div class="card-body">
-          <a href="{% url 'engine:detail' resort.ResortName %}" class="card-link">More Info</a>
-        </div>
-      </div>
-    </div>
 
-    {% endfor %}
+        <div class="card" style="">
+          <div class="row no-gutters">
+            <div class="col-auto">
+              <img class="img-fluid" width=200 height="200" src="{% static "images/skiResort.png" %}" alt="Card image cap">
+            </div>
+            <div class="col">
+                <div class="card-block px-2">
+                  <h5 class="card-title">{{ resort.ResortName }}</h5>
+                  <p class="card-text">{{ resort.Country }}</p>
+                  <p class="card-text">{{ resort.ResortSize }}</p>
+
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                  </ul>
+                  <div class="card-body">
+                    <a href="{% url 'engine:detail' resort.ResortName %}" class="card-link">More Info</a>
+                  </div>
+
+                </div>
+            </div>
+          </div>
+        </div>
+
+      {% endfor %}
   </div>
       </ul>
   {% else %}
-      <p>No resorts are available.</p>
+      <p>Please select your preferences to see resorts</p>
   {% endif %}
+</div>
+</div>
 {% endblock %}

@@ -41,10 +41,18 @@ def index(request):
             list_of_preferences = [form.cleaned_data['Size'], form.cleaned_data['Price'], form.cleaned_data['Ability']]
 
             indic = get_recommendations(list(ResortInfo.objects.all().values()), list_of_preferences)
-
             id_list = list(indic)
-            preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(id_list)])
-            allResorts = ResortInfo.objects.filter(pk__in=id_list).order_by(preserved)
+
+            clauses = ' '.join(['WHEN "ResortName" = \'%s\' THEN %s' % (pk, i) \
+                        for i, pk in enumerate(id_list)])
+
+            ordering = 'CASE %s END' % clauses
+
+            allResorts = ResortInfo.objects.filter(ResortName__in=id_list).extra(
+                        select={'ordering': ordering}, order_by=('ordering',))
+
+            print(indic)
+
 
             return render(request, 'engine/index.html', {'form': form, 'allResorts': allResorts})
 
