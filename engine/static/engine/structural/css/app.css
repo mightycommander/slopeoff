@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Fira Sans', sans-serif;
+    padding-top: 40px;
 }
 
 .oy-h {
@@ -99,7 +100,7 @@ ul.right-block ul {
 }
 
 .my-auto {
-  margin-top:40px!important;
+  margin-top:60px!important;
 }
 h2 {
   padding-top: 12px;
@@ -107,4 +108,34 @@ h2 {
   font-size: 14pt;
   font-family: 'Poppins', sans-serif;
 
+}
+#formContainer {
+  height: 100%;
+  vertical-align: center;
+
+
+}
+.navbar {
+  padding: 0 !important;
+}
+
+.btn {
+  padding: 20px 40px;
+  background-color: rgba(255, 92, 242, 0.5);
+  border: none;
+  position: relative;
+  top: 20px;
+}
+  .btn:hover {
+
+    background-color: rgba(255, 92, 242, 0.9);
+
+  }
+  .btn:active {
+
+    background-color: rgba(255, 92, 242, 0.9)!important;
+
+  }
+.break {
+  padding-top: 100px;
 }

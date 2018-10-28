@@ -61,11 +61,66 @@ def get_recommendations(dataset, preferences):
     dropCols = [col for col in numericCols if df[col].sum() == 0]
     df2 = df[[col for col in df.columns if col not in dropCols]]
 
-    df2 = df[['ResortName','ResortSize', 'ApresSki', 'Advanced']]
+    df2 = df[['ResortName','Continent','ResortSize','Beginners', 'Advanced', 'Variety','ApresSki','FamiliesAndChildren','ApresSki','RestaurantsAndFood']]
+    df2 = df2[df2['Continent'] == preferences[0]]
     df2.dropna(axis=0, inplace=True)
     df2.reset_index(drop=True, inplace=True)
+    preferences.append(5)
+    print(preferences)
+    if preferences[1] == 'Beginner':
 
-    X = np.array(df2[['ResortSize', 'ApresSki', 'Advanced']].append(pd.Series(data=preferences, index=['ResortSize', 'ApresSki', 'Advanced']), ignore_index=True))
-    nbrs = NearestNeighbors(n_neighbors=374, algorithm='kd_tree').fit(X)
+        if preferences[2] == 'Family':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'FamiliesAndChildren','Beginners']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'FamiliesAndChildren', 'Beginners']), ignore_index=True))
+        elif preferences[2] == 'Group':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'ApresSki','Beginners']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'FamiliesAndChildren', 'Beginners']), ignore_index=True))
+        elif preferences[2] == 'Couple':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'RestaurantsAndFood','Beginners']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'FamiliesAndChildren', 'Beginners']), ignore_index=True))
+        else:
+            X = np.array(df2[['ResortSize','Beginners']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'Beginners']), ignore_index=True))
+
+    elif preferences[1] == 'Intermediate':
+        if preferences[2] == 'Family':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'FamiliesAndChildren', 'Variety']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'FamiliesAndChildren', 'Variety']), ignore_index=True))
+        elif preferences[2] == 'Group':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'ApresSki', 'Variety']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'ApresSki', 'Variety']), ignore_index=True))
+        elif preferences[2] == 'Couple':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'RestaurantsAndFood', 'Variety']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'RestaurantsAndFood', 'Variety']), ignore_index=True))
+        else:
+            X = np.array(df2[['ResortSize','Variety']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'Variety']), ignore_index=True))
+
+    elif preferences[1] == 'Expert':
+        if preferences[2] == 'Family':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'FamiliesAndChildren', 'Advanced']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'FamiliesAndChildren', 'Advanced']), ignore_index=True))
+        elif preferences[2] == 'Group':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'ApresSki', 'Advanced']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'ApresSki', 'Advanced']), ignore_index=True))
+        elif preferences[2] == 'Couple':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'RestaurantsAndFood', 'Advanced']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'RestaurantsAndFood', 'Advanced']), ignore_index=True))
+        else:
+            X = np.array(df2[['ResortSize', 'Advanced']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'Advanced']), ignore_index=True))
+    else:
+        preferences.append(5)
+        if preferences[2] == 'Family':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'FamiliesAndChildren', 'Beginners', 'Advanced']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'FamiliesAndChildren', 'Beginners', 'Advanced']), ignore_index=True))
+        elif preferences[2] == 'Group':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'ApresSki', 'Beginners', 'Advanced']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'ApresSki', 'Beginners', 'Advanced']), ignore_index=True))
+        elif preferences[2] == 'Couple':
+            preferences.append(5)
+            X = np.array(df2[['ResortSize', 'RestaurantsAndFood', 'Beginners', 'Advanced']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'RestaurantsAndFood', 'Beginners', 'Advanced']), ignore_index=True))
+        else:
+            X = np.array(df2[['ResortSize', 'Beginners', 'Advanced']].append(pd.Series(data=preferences[3:], index=['ResortSize', 'Advanced', 'Beginners']), ignore_index=True))
+    print(X)
+    nbrs = NearestNeighbors(n_neighbors=(len(X)-1), algorithm='kd_tree').fit(X)
     distances, indices = nbrs.kneighbors(X)
-    return list(df2.ix[indices[-1,1:]]['ResortName'].values)[:10]
+    print(df2.ix[indices[-1,1:]])
+    return list(df2.ix[indices[-1,1:]]['ResortName'].values)[:9]

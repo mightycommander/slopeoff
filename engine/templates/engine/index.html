@@ -9,7 +9,8 @@
 {% block styles %}
   {{ block.super }}
 {% endblock %}
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static 'engine/structural/js/app.js' %}"></script>
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 
@@ -29,57 +30,64 @@
 </div>
 <div class="hero">
     <div class="container h-100 d-flex justify-content-center">
-        <a href="#"><img src="{% static "images/downbutton.png" %}"/></a>
+        <div class=scroller><img src="{% static "images/downbutton.png" %}"/></div>
     </div>
 </div>
-<div class="hero">
+<div class="hero break">
+<div class="container h-100 d-flex justify-content-center my-auto logoMain">
+    <div id="formContainer" class="my-auto">
+      <h2>Tell us a bit about what you're looking for so we can find your ideal resort...</h2>
+      <form method="POST" class="myform" action="">
+          {% csrf_token %}
+          {% bootstrap_form form %}
 
-    <form method="POST">
-        {% csrf_token %}
-        {% bootstrap_form form %}
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
 
-        <input type="submit" value="Submit">
-    </form>
-  </div>
 </div>
+</div>
+<div class="hero">
+  <div class="rsrt-list container h-100 d-flex justify-content-center">
 
-<div class="rsrt-list container">
-  {% if allResorts %}
-  <div class="row">
-    <div class="col-sm-12">
-      {% for resort in allResorts %}
+    {% if allResorts %}
 
-        <div class="card" style="">
-          <div class="row no-gutters">
-            <div class="col-auto">
-              <img class="img-fluid" width=200 height="200" src="{% static "images/skiResort.png" %}" alt="Card image cap">
-            </div>
-            <div class="col">
-                <div class="card-block px-2">
-                  <h5 class="card-title">{{ resort.ResortName }}</h5>
-                  <p class="card-text">{{ resort.Country }}</p>
-                  <p class="card-text">{{ resort.ResortSize }}</p>
+      <div class="col-sm-8">
+        {% for resort in allResorts %}
+        <script src="{% static 'engine/structural/js/scroller.js' %}"></script>
+          <div class="card" style="">
+            <div class="row no-gutters">
+              <div class="col-auto">
+                <img class="img-fluid" width=200 height="200" src="{% static "images/skiResort.png" %}" alt="Card image cap">
+              </div>
+              <div class="col">
+                  <div class="card-block px-2">
+                    <h5 class="card-title">{{ resort.ResortName }}</h5>
+                    <p class="card-text">{{ resort.Country }}</p>
+                    <p class="card-text">{{ resort.ResortSize }}</p>
 
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                  </ul>
-                  <div class="card-body">
-                    <a href="{% url 'engine:detail' resort.ResortName %}" class="card-link">More Info</a>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Cras justo odio</li>
+                      <li class="list-group-item">Dapibus ac facilisis in</li>
+                      <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                    <div class="card-body">
+                      <a href="{% url 'engine:detail' resort.ResortName %}" class="card-link">More Info</a>
+                    </div>
+
                   </div>
-
-                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-      {% endfor %}
-  </div>
-      </ul>
-  {% else %}
-      <p>Please select your preferences to see resorts</p>
-  {% endif %}
+        {% endfor %}
+      </div>
+          </ul>
+      {% else %}
+
+      {% endif %}
+    </div>
 </div>
 </div>
+
 {% endblock %}

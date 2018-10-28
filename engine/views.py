@@ -38,7 +38,7 @@ def index(request):
         form = FilesForm(request.POST)
         if form.is_valid():
 
-            list_of_preferences = [form.cleaned_data['Size'], form.cleaned_data['Price'], form.cleaned_data['Ability']]
+            list_of_preferences = [form.cleaned_data['Continent'],form.cleaned_data['Level'],form.cleaned_data['Size'], form.cleaned_data['Price']]
 
             indic = get_recommendations(list(ResortInfo.objects.all().values()), list_of_preferences)
             id_list = list(indic)
@@ -50,8 +50,6 @@ def index(request):
 
             allResorts = ResortInfo.objects.filter(ResortName__in=id_list).extra(
                         select={'ordering': ordering}, order_by=('ordering',))
-
-            print(indic)
 
 
             return render(request, 'engine/index.html', {'form': form, 'allResorts': allResorts})
