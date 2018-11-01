@@ -141,7 +141,7 @@ STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
+    os.path.join(PROJECT_ROOT, 'engine/static'),
 )
 
 
@@ -237,3 +237,8 @@ if not DEBUG:
    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
    S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
    STATIC_URL = S3_URL
+
+
+heroku config:set AWS_STORAGE_BUCKET_NAME=[slopeoffdatastore]
+heroku config:set AWS_ACCESS_KEY=AKIAIDZHREKU54KJ7HWA
+heroku config:set AWS_SECRET_ACCESS_KEY=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
