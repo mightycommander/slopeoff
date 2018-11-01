@@ -16,6 +16,10 @@ import sys
 import psycopg2
 
 
+from .local_settings import *
+
+
+
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -28,7 +32,7 @@ if BOOTSTRAP4_FOLDER not in sys.path:
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%%e8kdr0=z*12$8vi1if8gwaev3zxbcgqrw&+=@m4)%-rzc96*'
+
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -86,13 +90,6 @@ WSGI_APPLICATION = 'SlopeOff.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-'''SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}'''
 
 
 
@@ -225,10 +222,7 @@ DATABASES = {
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # try to load local_settings.py if it exists
-try:
-  from local_settings import *
-except Exception as e:
-  pass
+
 
 if not DEBUG:
    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']

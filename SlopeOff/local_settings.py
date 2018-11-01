@@ -1,10 +1,9 @@
-from settings import PROJECT_ROOT, SITE_ROOT
 import os
 
 DEBUG = True
 TEMPLATE_DEBUG = True
 
-
+SECRET_KEY = '%%e8kdr0=z*12$8vi1if8gwaev3zxbcgqrw&+=@m4)%-rzc96*'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
