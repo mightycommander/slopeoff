@@ -200,7 +200,6 @@ BOOTSTRAP3 = {
     },
 }
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-SECRET_KEY = '%%e8kdr0=z*12$8vi1if8gwaev3zxbcgqrw&+=@m4)%-rzc96*'
 
 
 # Allow all host hosts/domain names for this site
