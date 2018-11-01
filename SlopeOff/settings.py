@@ -16,7 +16,7 @@ import sys
 import psycopg2
 
 
-from .local_settings import *
+
 
 
 
@@ -36,7 +36,7 @@ if BOOTSTRAP4_FOLDER not in sys.path:
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -231,3 +231,8 @@ if not DEBUG:
    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
    S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
    STATIC_URL = S3_URL
+
+try:
+  from .local_settings import *
+except Exception as e:
+  pass
