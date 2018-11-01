@@ -14,10 +14,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 import sys
 import psycopg2
-
-
-
-
+import dj_database_url
 
 
 
@@ -211,12 +208,7 @@ ALLOWED_HOSTS = ['*']
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        'NAME': os.environ.get('DB_NAME', 'resort_info'),
-    }
-}
+DATABASES = {'default': dj_database_url.config()}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
