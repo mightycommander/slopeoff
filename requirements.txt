@@ -30,7 +30,7 @@ cycler==0.10.0
 Cython==0.28.3
 cytoolz==0.9.0.1
 dask==0.18.1
-datashape==0.5.4
+datashape==0.5.2
 decorator==4.3.0
 dill==0.2.8.2
 distributed==1.22.0
