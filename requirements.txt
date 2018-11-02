@@ -23,7 +23,6 @@ click==6.7
 cloudpickle==0.5.3
 clyent==1.2.1
 colorama==0.3.9
-conda==4.5.4
 configobj==5.0.6
 contextlib2==0.5.5
 cryptography==2.2.2
@@ -49,10 +48,6 @@ html5lib==1.0.1
 idna==2.7
 imageio==2.3.0
 imagesize==1.0.0
-ipykernel==4.8.2
-ipython==6.4.0
-ipython-genutils==0.2.0
-ipywidgets==7.2.1
 isort==4.3.4
 itsdangerous==0.24
 jdcal==1.4
