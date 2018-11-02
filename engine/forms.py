@@ -3,15 +3,10 @@ from __future__ import unicode_literals
 from django import forms
 from django.forms.formsets import BaseFormSet, formset_factory
 from django.forms.widgets import NumberInput
-from easy_select2 import select2_modelform, widgets
 from .models import ResortInfo
 
 qs = ResortInfo.objects.values('Continent').distinct()
-class Select2Multiple(widgets.Select2Mixin, forms.SelectMultiple):
-    pass
 
-class Select2(widgets.Select2Mixin, forms.Select):
-    pass
 
 RADIO_CHOICES = (("1", "Radio 1"), ("2", "Radio 2"))
 

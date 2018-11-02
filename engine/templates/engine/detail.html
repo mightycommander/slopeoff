@@ -5,16 +5,13 @@
 {# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-{% load leaflet_tags %}
-{% leaflet_js %}
-{% leaflet_css %}
+
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 
 
 {% block content %}
 <h1>{{ resort.ResortName }}</h1>
-{% leaflet_map "yourmap" %}
 
 <ul>
     <li>Country: {{resort.Country}}</li>
