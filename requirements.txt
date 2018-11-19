@@ -6,3 +6,4 @@ django-bootstrap4==0.0.7
 leaflet==0.0.3
 scikit-learn==0.20.0
 numpy==1.15.3
+pandas==0.23.4
