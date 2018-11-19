@@ -7,3 +7,4 @@ leaflet==0.0.3
 scikit-learn==0.20.0
 numpy==1.15.3
 pandas==0.23.4
+boto==2.49.0
