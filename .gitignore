@@ -2,3 +2,17 @@
 venv
 skiResort.csv
 .venv
+*/__pycache__
+*.pyc
+*.pyo
+__pycache__
+.installed.cfg
+bin
+develop-eggs
+dist
+downloads
+eggs
+parts
+src/*.egg-info
+lib
+lib64
