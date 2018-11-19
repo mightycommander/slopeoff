@@ -11,3 +11,4 @@ boto==2.49.0
 SQLAlchemy==1.2.13
 dj-static==0.0.6
 static3==0.7.0
+whitenoise==3.3.1
