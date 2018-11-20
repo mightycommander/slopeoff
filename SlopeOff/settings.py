@@ -232,5 +232,7 @@ if not DEBUG:
    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-   S3_URL = 'https://s3.eu-west-2.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
+   S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+   AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
+   AWS_S3_HOST = 'eu-west-2.amazonaws.com'
    STATIC_URL = S3_URL
