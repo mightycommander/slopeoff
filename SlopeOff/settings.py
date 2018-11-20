@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'leaflet',
+    'storages',
+    'boto',
 ]
 
 MIDDLEWARE = [
