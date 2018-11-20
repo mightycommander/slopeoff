@@ -234,5 +234,5 @@ if not DEBUG:
    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
    S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
    AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
-   AWS_S3_HOST = 'eu-west-2.amazonaws.com'
+   AWS_S3_HOST = 's3-eu-west-2.amazonaws.com'
    STATIC_URL = S3_URL
