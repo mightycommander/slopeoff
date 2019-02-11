@@ -208,7 +208,7 @@ SECRET_KEY = '%%e8kdr0=z*12$8vi1if8gwaev3zxbcgqrw&+=@m4)%-rzc96*'
 
 
 # Allow all host hosts/domain names for this site
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['vast-caverns-72660.herokuapp.com']
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
